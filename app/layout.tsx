@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className="font-body text-ink bg-white">
+      <body className="font-body text-slate-900 bg-white">
         <QueryProvider>
           <ToastProvider>{children}</ToastProvider>
         </QueryProvider>
