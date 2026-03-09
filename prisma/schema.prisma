@@ -105,3 +105,12 @@ model Template {
 
   @@index([category])
 }
+
+model Waitlist {
+  id        String   @id @default(cuid())
+  email     String   @unique
+  source    String   @default("homepage")
+  createdAt DateTime @default(now())
+
+  @@index([email])
+}
