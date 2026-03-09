@@ -1,0 +1,269 @@
+@import url("https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=Plus+Jakarta+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Fonts */
+  --font-display: "Bricolage Grotesque", sans-serif;
+  --font-body: "Plus Jakarta Sans", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  /* Core Colors */
+  --ink: #060b18;
+  --ink-secondary: #0d1628;
+  --ink-tertiary: #1a2847;
+  --slate-50: #f9fafb;
+  --slate-100: #f3f4f6;
+  --slate-200: #e5e7eb;
+  --slate-300: #d1d5db;
+  --slate-400: #9ca3af;
+  --slate-500: #6b7280;
+  --slate-600: #4b5563;
+  --slate-700: #374151;
+  --slate-800: #1f2937;
+  --slate-900: #111827;
+  --white: #ffffff;
+
+  /* Indigo Palette */
+  --indigo-50: #eef2ff;
+  --indigo-100: #e0e7ff;
+  --indigo-200: #c7d2fe;
+  --indigo-300: #a5b4fc;
+  --indigo-400: #818cf8;
+  --indigo-500: #6366f1;
+  --indigo-600: #4f46e5;
+  --indigo-700: #4338ca;
+  --indigo-800: #3730a3;
+  --indigo-900: #312e81;
+
+  /* Violet Palette */
+  --violet-50: #f5f3ff;
+  --violet-100: #ede9fe;
+  --violet-200: #ddd6fe;
+  --violet-300: #c4b5fd;
+  --violet-400: #a78bfa;
+  --violet-500: #8b5cf6;
+  --violet-600: #7c3aed;
+  --violet-700: #6d28d9;
+  --violet-800: #5b21b6;
+  --violet-900: #4c1d95;
+
+  /* Cyan Palette */
+  --cyan-50: #ecfdfd;
+  --cyan-100: #cffafe;
+  --cyan-200: #a5f3fc;
+  --cyan-300: #67e8f9;
+  --cyan-400: #22d3ee;
+  --cyan-500: #06b6d4;
+  --cyan-600: #0891b2;
+  --cyan-700: #0e7490;
+  --cyan-800: #155e75;
+  --cyan-900: #164e63;
+
+  /* Emerald Palette */
+  --emerald-50: #f0fdf4;
+  --emerald-100: #dcfce7;
+  --emerald-200: #bbf7d0;
+  --emerald-300: #86efac;
+  --emerald-400: #4ade80;
+  --emerald-500: #22c55e;
+  --emerald-600: #16a34a;
+  --emerald-700: #15803d;
+  --emerald-800: #166534;
+  --emerald-900: #134e4a;
+
+  /* Rose Palette */
+  --rose-50: #fff5f7;
+  --rose-100: #ffe4e6;
+  --rose-200: #fbcfe8;
+  --rose-300: #f472b6;
+  --rose-400: #ec4899;
+  --rose-500: #f43f5e;
+  --rose-600: #e11d48;
+  --rose-700: #be185d;
+  --rose-800: #9d174d;
+  --rose-900: #831843;
+
+  /* Amber Palette */
+  --amber-50: #fffbeb;
+  --amber-100: #fef3c7;
+  --amber-200: #fde68a;
+  --amber-300: #fcd34d;
+  --amber-400: #fbbf24;
+  --amber-500: #f59e0b;
+  --amber-600: #d97706;
+  --amber-700: #b45309;
+  --amber-800: #92400e;
+  --amber-900: #78350f;
+
+  /* Spacing Scale */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+  --space-20: 5rem;
+  --space-24: 6rem;
+  --space-28: 7rem;
+  --space-32: 8rem;
+
+  /* Border Radius */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+  --radius-full: 9999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --shadow-glow: 0 0 20px rgba(99, 102, 241, 0.3);
+  --shadow-glow-lg: 0 0 40px rgba(99, 102, 241, 0.4);
+
+  /* Easing */
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+
+  /* Duration */
+  --dur-fast: 150ms;
+  --dur-base: 250ms;
+  --dur-slow: 350ms;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "Plus Jakarta Sans", system-ui, sans-serif;
+  color: var(--ink);
+  background-color: var(--white);
+}
+
+a {
+  transition: color var(--dur-base);
+}
+
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Bricolage Grotesque", sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: 3rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h1 {
+    font-size: 3.75rem;
+  }
+}
+
+h2 {
+  font-size: 1.875rem;
+}
+
+@media (min-width: 768px) {
+  h2 {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h2 {
+    font-size: 3rem;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+@media (min-width: 768px) {
+  h3 {
+    font-size: 1.875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h3 {
+    font-size: 2.25rem;
+  }
+}
+
+h4 {
+  font-size: 1.25rem;
+}
+
+@media (min-width: 768px) {
+  h4 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  h4 {
+    font-size: 1.875rem;
+  }
+}
+
+h5 {
+  font-size: 1.125rem;
+}
+
+@media (min-width: 768px) {
+  h5 {
+    font-size: 1.25rem;
+  }
+}
+
+h6 {
+  font-size: 1rem;
+}
+
+@media (min-width: 768px) {
+  h6 {
+    font-size: 1.125rem;
+  }
+}
+
+p {
+  line-height: 1.625;
+}
+
+/* Focus Styles */
+:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--white), 0 0 0 4px rgb(99, 102, 241);
+}
+
+/* Selection */
+::selection {
+  background-color: rgb(99, 102, 241);
+  color: var(--white);
+}

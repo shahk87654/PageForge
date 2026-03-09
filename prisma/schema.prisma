@@ -1,0 +1,107 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+}
+
+model User {
+  id                  String    @id @default(cuid())
+  email               String    @unique
+  name                String?
+  username            String?   @unique
+  plan                String    @default("FREE")
+  stripeCustomerId    String?   @unique
+  stripeSubId         String?
+  trialEndsAt         DateTime?
+  onboardingCompleted Boolean   @default(false)
+  createdAt           DateTime  @default(now())
+  updatedAt           DateTime  @updatedAt
+
+  pages         Page[]
+  subscriptions Subscription[]
+  analytics     Analytics[]
+
+  @@index([email])
+  @@index([username])
+}
+
+model Page {
+  id            String   @id @default(cuid())
+  userId        String
+  title         String
+  slug          String
+  status        String   @default("DRAFT")
+  templateId    String?
+  contentJson   Json?
+  metaTitle     String?
+  metaDesc      String?
+  primaryColor  String   @default("#6366F1")
+  fontFamily    String   @default("body")
+  visits        Int      @default(0)
+  conversions   Int      @default(0)
+  publishedAt   DateTime?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  analytics Analytics[]
+
+  @@unique([userId, slug])
+  @@index([userId])
+  @@index([status])
+}
+
+model Subscription {
+  id                 String   @id @default(cuid())
+  userId             String   @unique
+  plan               String   @default("FREE")
+  stripeSubId        String?
+  status             String   @default("active")
+  currentPeriodStart DateTime
+  currentPeriodEnd   DateTime
+  cancelledAt        DateTime?
+  createdAt          DateTime @default(now())
+  updatedAt          DateTime @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model Analytics {
+  id          String   @id @default(cuid())
+  pageId      String
+  userId      String
+  visitorHash String
+  referrer    String?
+  country     String?
+  device      String
+  clickedCta  Boolean  @default(false)
+  duration    Int
+  createdAt   DateTime @default(now())
+
+  page Page @relation(fields: [pageId], references: [id], onDelete: Cascade)
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([pageId])
+  @@index([userId])
+  @@index([createdAt])
+}
+
+model Template {
+  id          String   @id @default(cuid())
+  name        String
+  description String
+  thumbnail   String?
+  category    String
+  isDefault   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+
+  @@index([category])
+}
